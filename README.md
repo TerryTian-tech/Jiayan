@@ -2,8 +2,11 @@
 [![PyPI](https://img.shields.io/badge/pypi-v0.0.21-blue.svg)](https://pypi.org/project/jiayan/)
 ![License](https://img.shields.io/badge/license-MIT-yellow.svg)
 
-[中文](#简介)  
-[English](#introduction)  
+注：本仓库为甲言Jiayan的Fork分支，原仓库请访问：https://github.com/jiaeyan/Jiayan
+
+[中文](#简介)  # 本Fork在中文README增加了若干在Windows上的使用说明。
+
+[English](#introduction)  # 英文README维持原版介绍。
 
 ## 简介
 甲言，取「甲骨文言」之意，是一款专注于古汉语处理的NLP工具包。  
@@ -28,25 +31,42 @@
 * 注意：受语料影响，目前不支持繁体。如需处理繁体，可先用[OpenCC](https://github.com/yichen0831/opencc-python)将输入转换为简体，再将结果转化为相应繁体(如港澳台等)。  
 
 ## 安装  
-    $ pip install jiayan 
-    $ pip install https://github.com/kpu/kenlm/archive/master.zip
+Linux/MacOS:
+  ```
+  pip install jiayan 
+  pip install https://github.com/kpu/kenlm/archive/master.zip
+  ```
 
+Windows:
+  ```
+  curl -O https://files.pythonhosted.org/packages/02/6e/f4e159cef39ea4ef2244b4aa32857d447d60a5d0ee269e1b1f8d3723c03e/kenlm-0.3.0.tar.gz
+  # 这里只列出0.3.0版本，请自行追踪最新版本，如果下载失败请参考下面的说明。
+  tar -xzf kenlm-0.3.0.tar.gz 
+  cd kenlm-0.3.0
+  # 如果第一个命令执行失败，请直接从该网址下载kenlm-0.3.0.tar.gz，解压后打开文件夹，右键选择“在终端中打开”，然后执行下面的命令。
+  pip install cython
+  cython -3 python/kenlm.pyx --cplus
+  pip install .
+  pip install jiayan
+  ```
 ## 使用  
 以下各模块的使用方法均来自[examples.py](jiayan/examples.py)。
-1. 下载模型并解压：[百度网盘](https://pan.baidu.com/s/1PXP0eSQWWcNmAb6lkuB5sw)，提取码：`p0sc`
+1. 下载模型：[百度网盘](https://pan.baidu.com/s/1PXP0eSQWWcNmAb6lkuB5sw)，提取码：`p0sc`
+             [备用链接](https://pan.baidu.com/s/1DyG9f3uSnW3jw3nwubX68w)， 提取码: `2rrs` 
    * jiayan.klm：语言模型，主要用来分词，以及句读标点任务中的特征提取；  
    * pos_model：CRF词性标注模型；
    * cut_model：CRF句读模型；
    * punc_model：CRF标点模型；
    * 庄子.txt：用来测试词库构建的庄子全文。
+   请将这些文件解压到你的py程序能直接读取的地方，或者按下面的说明设置。
    
 2. <span id="1">__词库构建__</span>  
    ```
    from jiayan import PMIEntropyLexiconConstructor
    
    constructor = PMIEntropyLexiconConstructor()
-   lexicon = constructor.construct_lexicon('庄子.txt')
-   constructor.save(lexicon, '庄子词库.csv')
+   lexicon = constructor.construct_lexicon('庄子.txt') # 这里可以替换为你解压后的实际目录，比如你使用Windows系统，解压的目录在C盘，该参数即为lexicon = constructor.construct_lexicon('C:\\庄子.txt')。
+   constructor.save(lexicon, '庄子词库.csv') # 同上
    ```
    
    结果：  
@@ -74,7 +94,7 @@
         
         text = '是故内圣外王之道，暗而不明，郁而不发，天下之人各为其所欲焉以自为方。'
         
-        lm = load_lm('jiayan.klm')
+        lm = load_lm('jiayan.klm') # 这里可以替换为你解压后的实际目录，比如你使用Windows系统，解压的目录在C盘，该参数即为lm = load_lm(r"C:\jiayan.klm")。
         tokenizer = CharHMMTokenizer(lm)
         print(list(tokenizer.tokenize(text)))
         ```
@@ -124,7 +144,7 @@
     
     text = '天下大乱贤圣不明道德不一天下多得一察焉以自好譬如耳目皆有所明不能相通犹百家众技也皆有所长时有所用虽然不该不遍一之士也判天地之美析万物之理察古人之全寡能备于天地之美称神之容是故内圣外王之道暗而不明郁而不发天下之人各为其所欲焉以自为方悲夫百家往而不反必不合矣后世之学者不幸不见天地之纯古之大体道术将为天下裂'
     
-    lm = load_lm('jiayan.klm')
+    lm = load_lm('jiayan.klm')# 这里可以替换为你解压后的实际目录，比如你使用Windows系统，解压的目录在C盘，该参数即为lm = load_lm(r"C:\jiayan.klm")。
     sentencizer = CRFSentencizer(lm)
     sentencizer.load('cut_model')
     print(sentencizer.sentencize(text))
@@ -139,7 +159,7 @@
     
     text = '天下大乱贤圣不明道德不一天下多得一察焉以自好譬如耳目皆有所明不能相通犹百家众技也皆有所长时有所用虽然不该不遍一之士也判天地之美析万物之理察古人之全寡能备于天地之美称神之容是故内圣外王之道暗而不明郁而不发天下之人各为其所欲焉以自为方悲夫百家往而不反必不合矣后世之学者不幸不见天地之纯古之大体道术将为天下裂'
     
-    lm = load_lm('jiayan.klm')
+    lm = load_lm('jiayan.klm')# 这里可以替换为你解压后的实际目录，比如你使用Windows系统，解压的目录在C盘，该参数即为lm = load_lm(r"C:\jiayan.klm")。
     punctuator = CRFPunctuator(lm, 'cut_model')
     punctuator.load('punc_model')
     print(punctuator.punctuate(text))
