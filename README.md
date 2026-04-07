@@ -30,7 +30,7 @@
 * 文白翻译
   * 开发中，目前处于文白平行语料收集、清洗阶段。
   * 基于[双向长短时记忆循环网络](https://baike.baidu.com/item/长短期记忆人工神经网络/17541107?fromtitle=LSTM&fromid=17541102&fr=aladdin)和[注意力机制](https://baike.baidu.com/item/注意力机制)的神经网络生成模型，对古文进行自动翻译。
-* 注意：受语料影响，目前不支持繁体。如需处理繁体，可先用[OpenCC](https://github.com/yichen0831/opencc-python)将输入转换为简体，再将结果转化为相应繁体(如港澳台等)。  
+* 注意：受语料影响，目前不支持繁体。如需处理繁体，可先用[OpenCC](https://github.com/BYVoid/OpenCC)将输入转换为简体，再将结果转化为相应繁体(如港澳台等)。  
 
 ## 安装  
 Linux/MacOS:
@@ -198,7 +198,7 @@ Current version supports [lexicon construction](#6), [tokenizing](#7), [POS tagg
   * Character level sequence tagging with CRF, introduces PMI and [T-test](https://en.wikipedia.org/wiki/Student%27s_t-test) values as features.  
 * [__Punctuation__](#10)
   * Character level sequence tagging with layered CRFs, punctuate given Classical Chinese texts based on results of sentence segmentation.    
-* Note: Due to data we used, we don't support traditional Chinese for now. If you have to process traditional one, please use [OpenCC](https://github.com/yichen0831/opencc-python) to convert traditional input to simplified, then you could convert the results back.  
+* Note: Due to data we used, we don't support traditional Chinese for now. If you have to process traditional one, please use [OpenCC](https://github.com/BYVoid/OpenCC) to convert traditional input to simplified, then you could convert the results back.  
 
 ## Installation  
     $ pip install jiayan 
