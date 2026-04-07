@@ -2,7 +2,9 @@
 [![PyPI](https://img.shields.io/badge/pypi-v0.0.21-blue.svg)](https://pypi.org/project/jiayan/)
 ![License](https://img.shields.io/badge/license-MIT-yellow.svg)
 
-注：本仓库为甲言Jiayan的Fork分支，原仓库请访问：https://github.com/jiaeyan/Jiayan
+注：本仓库为甲言Jiayan的Fork分支，由TerryTian-tech创建。
+
+原仓库请访问：https://github.com/jiaeyan/Jiayan
 
 [中文](#简介)  # 本Fork在中文README增加了若干在Windows上的使用说明。
 
@@ -144,7 +146,7 @@ Windows:
     
     text = '天下大乱贤圣不明道德不一天下多得一察焉以自好譬如耳目皆有所明不能相通犹百家众技也皆有所长时有所用虽然不该不遍一之士也判天地之美析万物之理察古人之全寡能备于天地之美称神之容是故内圣外王之道暗而不明郁而不发天下之人各为其所欲焉以自为方悲夫百家往而不反必不合矣后世之学者不幸不见天地之纯古之大体道术将为天下裂'
     
-    lm = load_lm('jiayan.klm')# 这里可以替换为你解压后的实际目录，比如你使用Windows系统，解压的目录在C盘，该参数即为lm = load_lm(r"C:\jiayan.klm")。
+    lm = load_lm('jiayan.klm') # 这里可以替换为你解压后的实际目录，比如你使用Windows系统，解压的目录在C盘，该参数即为lm = load_lm(r"C:\jiayan.klm")。
     sentencizer = CRFSentencizer(lm)
     sentencizer.load('cut_model')
     print(sentencizer.sentencize(text))
@@ -159,7 +161,7 @@ Windows:
     
     text = '天下大乱贤圣不明道德不一天下多得一察焉以自好譬如耳目皆有所明不能相通犹百家众技也皆有所长时有所用虽然不该不遍一之士也判天地之美析万物之理察古人之全寡能备于天地之美称神之容是故内圣外王之道暗而不明郁而不发天下之人各为其所欲焉以自为方悲夫百家往而不反必不合矣后世之学者不幸不见天地之纯古之大体道术将为天下裂'
     
-    lm = load_lm('jiayan.klm')# 这里可以替换为你解压后的实际目录，比如你使用Windows系统，解压的目录在C盘，该参数即为lm = load_lm(r"C:\jiayan.klm")。
+    lm = load_lm('jiayan.klm') # 这里可以替换为你解压后的实际目录，比如你使用Windows系统，解压的目录在C盘，该参数即为lm = load_lm(r"C:\jiayan.klm")。
     punctuator = CRFPunctuator(lm, 'cut_model')
     punctuator.load('punc_model')
     print(punctuator.punctuate(text))
